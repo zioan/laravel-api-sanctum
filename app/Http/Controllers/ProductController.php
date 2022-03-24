@@ -69,6 +69,21 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+       return Product::destroy($id);
+    }
+
+    /**
+     * Search for a name.
+     *
+     * @param  str  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        // search for the exact term
+        // return Product::where("name", $name)->get();
+
+        //search if the term is containing, even as part of a word
+       return Product::where("name", "like", "%".$name."%")->get();
     }
 }
